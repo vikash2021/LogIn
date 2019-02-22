@@ -42,6 +42,8 @@ public class SignUp extends AppCompatActivity {
                 String str4 = editText3.getText().toString();
                 String str5 = editText2.getText().toString();
                 String str6 = editText1.getText().toString();
+                String email = editText4.getText().toString().trim();
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
                 if (str1.matches("") || str2.matches("") || str3.matches("")
                         || str4.matches("") || str5.matches("") || str6.matches(""))
@@ -50,39 +52,51 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(SignUp.this, "All fields are mandatory", Toast.LENGTH_SHORT).show();
                 }
 
+                else {
 
-
-
-                else
-                {
-
-                    if (str1.equals(str2)) {
-                        startActivity(new Intent(getApplicationContext(), com.example.vikash.login.progressbar.class));
-
-                        final Handler handler=new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(SignUp.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                                editText1.setText("");
-                                editText2.setText("");
-                                editText3.setText("");
-                                editText4.setText("");
-                                editText5.setText("");
-                                editText6.setText("");
-
-                            }
-                        },3000);
-
-
-
-
-                    } else {
-                        Toast.makeText(SignUp.this, "Enter Correct Password", Toast.LENGTH_SHORT).show();
+                    if (str4.length()<10)
+                    {
+                        Toast.makeText(getApplicationContext(), "Enter valid mobile number", Toast.LENGTH_SHORT).show();
                     }
+                    else {
 
 
+                        if (email.matches(emailPattern)) {
+
+
+                            if (str1.equals(str2)) {
+                                startActivity(new Intent(getApplicationContext(), com.example.vikash.login.progressbar.class));
+
+                                final Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(SignUp.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                                        editText1.setText("");
+                                        editText2.setText("");
+                                        editText3.setText("");
+                                        editText4.setText("");
+                                        editText5.setText("");
+                                        editText6.setText("");
+
+                                    }
+                                }, 3000);
+
+
+                            } else {
+                                Toast.makeText(SignUp.this, "Password does not match", Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        } else
+
+                        {
+                            Toast.makeText(getApplicationContext(), "Invalid Email Password", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
                 }
+
             }
         });
 
