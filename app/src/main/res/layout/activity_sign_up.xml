@@ -103,12 +103,12 @@
 
 
     <Button
-        android:layout_width="110dp"
+        android:layout_width="240dp"
         android:layout_height="40dp"
         android:textAllCaps="false"
         android:text="SignUp"
         android:background="@drawable/button_round"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/t6"
         android:layout_marginTop="15dp"
