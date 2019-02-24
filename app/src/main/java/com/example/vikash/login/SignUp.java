@@ -70,7 +70,7 @@ public class SignUp extends AppCompatActivity {
 
                                 if (email.matches(emailPattern)) {
 
-                                    if ((str1.length() < 8) && (str2.length() < 8)) {
+                                    if ((str1.length() >= 8) && (str2.length() >= 8)) {
 
 
                                         if (str1.equals(str2)) {
@@ -87,16 +87,18 @@ public class SignUp extends AppCompatActivity {
                                                     editText4.setText("");
                                                     editText5.setText("");
                                                     editText6.setText("");
+                                                    startActivity(new Intent(getApplicationContext(), com.example.vikash.login.MainActivity.class));
+
 
                                                 }
-                                            }, 3000);
+                                            }, 1800);
 
 
                                         } else {
-                                            Toast.makeText(SignUp.this, "Password does not match", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(SignUp.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
-                                        Toast.makeText(SignUp.this, "Min 8 characters", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SignUp.this, "Password 8 characters", Toast.LENGTH_SHORT).show();
                                     }
 
 
@@ -109,12 +111,12 @@ public class SignUp extends AppCompatActivity {
                             }
                         }else
                         {
-                            Toast.makeText(SignUp.this, "Name contains alphabets only", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this, "LastName contains alphabets only", Toast.LENGTH_SHORT).show();
                         }
 
                     }else
                     {
-                        Toast.makeText(SignUp.this, "Name contains alphabets only", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUp.this, "FirstName contains alphabets only", Toast.LENGTH_SHORT).show();
                     }
                 }
 

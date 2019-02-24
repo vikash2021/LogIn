@@ -11,7 +11,7 @@
 
    <EditText
        android:layout_width="300dp"
-       android:layout_height="50dp"
+       android:layout_height="40dp"
        android:background="@drawable/edit_round"
        android:layout_centerHorizontal="true"
        android:layout_marginTop="250dp"
@@ -24,11 +24,11 @@
 
     <EditText
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:textColor="#455a64"
         android:layout_below="@+id/t1"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/edit_round"
         android:hint="Password"
         android:drawableLeft="@drawable/ic_lock_black_24dp"
@@ -46,7 +46,7 @@
         android:background="@drawable/button_round"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/t2"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="#cfd8dc"
