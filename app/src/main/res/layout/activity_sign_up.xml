@@ -5,14 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#ECEFF1">
+    android:background="#cfd8dc">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="380dp"
+
+        android:padding="40dp"
+        app:srcCompat="@drawable/log" />
+
 
 
     <EditText
-        android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="170dp"
         android:hint="FirstName"
         android:textColor="#455a64"
         android:id="@+id/t1"
@@ -24,8 +39,8 @@
         />
 
     <android.support.v7.widget.AppCompatEditText
-        android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:hint="LastName"
@@ -40,8 +55,8 @@
         />
 
     <EditText
-        android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:textColor="#455a64"
@@ -56,8 +71,8 @@
         />
 
     <EditText
-        android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/edit_round"
         android:textColor="#455a64"
@@ -72,8 +87,8 @@
         />
 
     <EditText
-        android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:background="@drawable/edit_round"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
@@ -87,9 +102,9 @@
         />
 
     <EditText
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:background="@drawable/edit_round"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:hint="Confirm Password"
@@ -113,7 +128,7 @@
         android:layout_below="@+id/t6"
         android:layout_marginTop="15dp"
         android:textAlignment="center"
-        android:textColor="#424242"
+        android:textColor="#cfd8dc"
         android:foregroundGravity="center"
         android:id="@+id/b1"/>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#455a64"
+    android:background="#cfd8dc"
     tools:context=".MainActivity">
 
 
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:text="New User?"
             android:textSize="18sp"
-            android:textColor="#cfd8dc"
+            android:textColor="#455a64"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/b1"
             android:layout_marginTop="5dp"
@@ -84,7 +84,7 @@
 
             android:background="@android:color/transparent"
             android:layout_marginTop="3dp"
-            android:textColor="#81d4fa"
+            android:textColor="#1e88e5"
 
             />
 
@@ -101,7 +101,7 @@
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="250dp"
         android:padding="70dp"
-        app:srcCompat="@drawable/user" />
+        app:srcCompat="@drawable/log" />
 
 
 </RelativeLayout>
