@@ -19,7 +19,7 @@
         android:layout_marginBottom="380dp"
 
         android:padding="40dp"
-        app:srcCompat="@drawable/log" />
+        app:srcCompat="@drawable/signup" />
 
 
 
