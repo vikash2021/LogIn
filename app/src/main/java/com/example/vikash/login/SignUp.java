@@ -87,7 +87,7 @@ public class SignUp extends AppCompatActivity {
                                                     editText4.setText("");
                                                     editText5.setText("");
                                                     editText6.setText("");
-                                                    startActivity(new Intent(getApplicationContext(), com.example.vikash.login.MainActivity.class));
+                                                    startActivity(new Intent(getApplicationContext(), com.example.vikash.login.scan.class));
 
 
                                                 }

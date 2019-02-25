@@ -68,6 +68,7 @@
             android:textSize="18sp"
             android:textColor="#455a64"
             android:layout_centerHorizontal="true"
+
             android:layout_below="@id/b1"
             android:layout_marginTop="5dp"
             android:id="@+id/t3"/>
