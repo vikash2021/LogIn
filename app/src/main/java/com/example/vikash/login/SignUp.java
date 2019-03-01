@@ -37,18 +37,18 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String str1 = editText5.getText().toString();
-                String str2 = editText6.getText().toString();
-                String str3 = editText4.getText().toString();
-                String str4 = editText3.getText().toString();
-                String str5 = editText2.getText().toString();
-                String str6 = editText1.getText().toString();
+                final String str1 = editText5.getText().toString();
+                final String str2 = editText6.getText().toString();
+                final String str3 = editText4.getText().toString();
+                final String str4 = editText3.getText().toString();
+                final String str5 = editText2.getText().toString();
+                final String str6 = editText1.getText().toString();
                 String email = editText4.getText().toString().trim();
                 String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
                 String firstName = editText1.getText().toString().trim();
                 String lastName = editText2.getText().toString().trim();
-                String matchName = "[a-zA-Z]+";
+                String matchName = "[a-zA-Z0-9]+";
 
                 if (str1.matches("") || str2.matches("") || str3.matches("")
                         || str4.matches("") || str5.matches("") || str6.matches(""))
@@ -87,8 +87,9 @@ public class SignUp extends AppCompatActivity {
                                                     editText4.setText("");
                                                     editText5.setText("");
                                                     editText6.setText("");
-//                                                    startActivity(new Intent(getApplicationContext(), com.example.vikash.login.scan.class));
-
+//
+                                                    insertIntoMainTable(str6 ,str5 ,str4 ,str3,str2);
+                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
                                                 }
                                             }, 1800);
@@ -125,7 +126,13 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-
-
+    private void insertIntoMainTable( String name, String userName, String mobileNo, String email, String password) {
+        VolleyConnect volly = new VolleyConnect(getBaseContext(),"http://192.168.43.49/v4/api/tmp/main/main_insert_new_data.php");
+        volly.RegisterInMain(name, userName, mobileNo, email, password);
     }
+
+
+
+
+}
 

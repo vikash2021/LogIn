@@ -54,14 +54,6 @@
         android:id="@+id/b1"
         />
 
-    <Button
-        android:id="@+id/logOutButton"
-        android:layout_marginLeft="300dp"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        android:background="@drawable/ic_power_settings_new_black_24dp"
-
-        />
 
 
 

@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="193dp"
@@ -25,37 +27,34 @@
             app:srcCompat="@drawable/signup" />
 
 
+        <EditText
+            android:id="@+id/t1"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/edit_round"
+            android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
+            android:drawablePadding="10dp"
+            android:hint=" Name"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="#455a64" />
 
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:hint="FirstName"
-        android:textColor="#455a64"
-        android:id="@+id/t1"
-        android:inputType="textPersonName"
-        android:background="@drawable/edit_round"
-        android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
-        android:paddingLeft="10dp"
-        android:drawablePadding="10dp"
-        />
-
-    <android.support.v7.widget.AppCompatEditText
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:hint="LastName"
-        android:id="@+id/t2"
-        android:layout_below="@+id/t1"
-        android:textColor="#455a64"
-        android:inputType="textPersonName"
-        android:background="@drawable/edit_round"
-        android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
-        android:paddingLeft="10dp"
-        android:drawablePadding="10dp"
-        />
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/t2"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/t1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_round"
+            android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
+            android:drawablePadding="10dp"
+            android:hint="user_id"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="#455a64" />
 
     <EditText
         android:layout_width="300dp"

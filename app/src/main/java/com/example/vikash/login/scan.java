@@ -37,7 +37,9 @@ public class scan extends AppCompatActivity {
 
     public  TextView resultTextView;
     private Context mContext;
-    private Button scan_btn;
+    private Button scan_btn,login_btn;
+    private String nowlogin;
+    private static final String mainRoot = "http://192.168.43.49/v4/api/tmp/main/";
 
     final String url = "http://192.168.43.49/v4/api/tmp/hacktemp_insert_new_qr.php";
 
@@ -55,12 +57,22 @@ public class scan extends AppCompatActivity {
             }
         });
 
+        login_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VolleyConnect vollyLogOut = new VolleyConnect(getBaseContext(),mainRoot + "");
+                vollyLogOut.LogOut(nowlogin);
+            }
+        });                                     ////<<<<<<<--------------------------------------------------------<<<<<<<<<<<<<<<<<
+
+
     }
 
     private void Init() {
         mContext = scan.this;
         resultTextView = (TextView) findViewById(R.id.t7);
         scan_btn = (Button) findViewById(R.id.btn3);
+        login_btn = (Button) findViewById(R.id.logOut);
     }
 
     void scanQr(){

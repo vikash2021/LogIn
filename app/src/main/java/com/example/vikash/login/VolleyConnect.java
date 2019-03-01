@@ -49,7 +49,7 @@ public class VolleyConnect {
             JSONObject jsonBody = new JSONObject();
 
             // init this json object
-            jsonBody.put("firstname", this.name);
+            jsonBody.put("firstname", name);
             jsonBody.put("user_name", userName);
             jsonBody.put("email", email);
             jsonBody.put("mobilenumber", mobileNo);
@@ -100,6 +100,125 @@ public class VolleyConnect {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void LogIn(String userName,String password)
+
+    {
+        try {
+            RequestQueue requestQueue = Volley.newRequestQueue(this.mContext);
+            JSONObject jsonBody = new JSONObject();
+
+
+            jsonBody.put("user_name", userName);
+            jsonBody.put("password", password);
+
+
+            final String mRequestBody = jsonBody.toString();
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,this.url, new
+                    Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.i("LOG_VOLLEY", response);
+                            Toast.makeText(mContext, "You are now logged in",Toast.LENGTH_SHORT).show();
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("LOG_VOLLEY", error.toString());
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return mRequestBody == null ? null : mRequestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", mRequestBody, "utf-8");
+                        return null;
+                    }
+                }
+                @Override
+                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                    String responseString = "";
+                    if (response != null) {
+                        responseString = String.valueOf(response.statusCode);
+                    }
+                    return Response.success(responseString,
+                            HttpHeaderParser.parseCacheHeaders(response));
+                }
+            };
+            requestQueue.add(stringRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
+    public void LogOut(String  s)
+
+    {
+        try {
+            RequestQueue requestQueue = Volley.newRequestQueue(this.mContext);
+            JSONObject jsonBody = new JSONObject();
+
+
+            jsonBody.put("nowlogin", 0);
+
+
+
+            final String mRequestBody = jsonBody.toString();
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,this.url, new
+                    Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.i("LOG_VOLLEY", response);
+                           // Toast.makeText(mContext, "You are now logged in",Toast.LENGTH_SHORT).show();
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("LOG_VOLLEY", error.toString());
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return mRequestBody == null ? null : mRequestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", mRequestBody, "utf-8");
+                        return null;
+                    }
+                }
+                @Override
+                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                    String responseString = "";
+                    if (response != null) {
+                        responseString = String.valueOf(response.statusCode);
+                    }
+                    return Response.success(responseString,
+                            HttpHeaderParser.parseCacheHeaders(response));
+                }
+            };
+            requestQueue.add(stringRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
@@ -174,7 +293,6 @@ public class VolleyConnect {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 
 }
