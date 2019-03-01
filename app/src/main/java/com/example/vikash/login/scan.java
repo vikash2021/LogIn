@@ -5,21 +5,41 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.textclassifier.TextLinks;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import javax.xml.transform.Result;
-
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
+
 public class scan extends AppCompatActivity {
+
+    private static final String TAG = "scan";
 
     public  TextView resultTextView;
     private Context mContext;
     private Button scan_btn;
+
+    final String url = "http://192.168.43.49/v4/api/tmp/hacktemp_insert_new_qr.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +82,284 @@ public class scan extends AppCompatActivity {
         if (intentResult.getContents() == null){
             Toast.makeText(mContext, "u cancelled the scan.",Toast.LENGTH_SHORT).show();
         } else {
-//            Toast.makeText(mContext, intentResult.getContents() ,Toast.LENGTH_SHORT).show();
-            resultTextView.setText(intentResult.getContents().toString());
+            resultTextView.setText(intentResult.getContents());
             resultTextView.setTextSize(16.0f);
+
+            String qr_code = intentResult.getContents().toString();
+            String mobile_id = "9999999";
+            String otp = "0000";
+            String pk = "0";
+
+            vollyConnect(url, qr_code, mobile_id, otp, pk);
         }
         super.onActivityResult(requestCode, resultCode, data);
 
     }
 
+    private void vollyConnect(final String urls, String qr, String mobile_id, String otp, String pk)
+    {
+
+        try {
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            JSONObject jsonBody = new JSONObject();
+
+            // init this json object
+            jsonBody.put("qr", qr);
+            jsonBody.put("mobile_id", mobile_id);
+            jsonBody.put("otp", otp);
+            jsonBody.put("pk", pk);
+
+            final String mRequestBody = jsonBody.toString();
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, urls, new
+                    Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.i("LOG_VOLLEY", response);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("LOG_VOLLEY", error.toString());
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return mRequestBody == null ? null : mRequestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", mRequestBody, "utf-8");
+                        return null;
+                    }
+                }
+                @Override
+                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                    String responseString = "";
+                    if (response != null) {
+                        responseString = String.valueOf(response.statusCode);
+                    }
+                    return Response.success(responseString,
+                            HttpHeaderParser.parseCacheHeaders(response));
+                }
+            };
+            requestQueue.add(stringRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//    RequestQueue queue = Volley.newRequestQueue(this);
+//
+//        Log.d(TAG, "connect: param: " + "pr: " + qr + " mobile_id: " + mobile_id + " otp : " + otp + " pk : " + pk);
+//
+//final String url = "http://192.168.43.49/v4/api/tmp/hacktemp_insert_new_qr.php";
+//
+//        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+//        new Response.Listener<String>()
+//        {
+//@Override
+//public void onResponse(String response) {
+//        // response
+//        Toast.makeText(mContext, response, Toast.LENGTH_SHORT).show();
+//        Log.d(TAG, "onResponse: Response: " + response);
+//        }
+//        },
+//        new Response.ErrorListener()
+//        {
+//@Override
+//public void onErrorResponse(VolleyError error) {                     //------------------------------/
+//        // error
+//        Toast.makeText(mContext, "Error: " + error, Toast.LENGTH_SHORT).show();
+//        Log.d("Error.Response", error.toString());
+//        }
+//        }
+//        ) {
+//@Override
+//protected Map<String, String> getParams()
+//        {
+//        // creating json object
+//        JSONObject jsonObject = new JSONObject();
+//
+//        // init json object
+//        try {
+//        jsonObject.put("qr" , qr);
+//        jsonObject.put("mobile_id" , mobile_id);
+//        jsonObject.put("otp" , otp);
+//        jsonObject.put("pk" , pk);
+//        } catch (JSONException e) {
+//        e.printStackTrace();
+//        }
+//
+//        return jsonObject;
+//        }
+//        };
+//
+//        queue.add(postRequest);
+//
+//
+//
+//
+////        try{
+////
+////            RequestQueue referenceQueue = Volley.newRequestQueue(this);
+////
+//////
+//////
+//////            // creating json object
+//////            JSONObject jsonObject = new JSONObject();
+//////
+//////            // init json object
+//////            jsonObject.put("qr" , qr);
+//////            jsonObject.put("mobile_id" , mobile_id);
+//////            jsonObject.put("otp" , otp);
+//////            jsonObject.put("pk" , pk);
+//////
+//////            final String requestBody = jsonObject.toString();
+//////
+////////            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+////////                @Override
+////////                public void onResponse(String response) {
+////////
+////////                }
+////////            }), new Response.ErrorListener(){
+////////
+////////            }
+//////
+//////            final String url = "http://localhost/v4/api/tmp/hacktemp_insert_new_qr.php";
+//////
+//////            StringRequest postRequest = new StringRequest(Request.Method.POST, url, getPo
+//////
+////        } catch (JSONException e) {
+////            e.printStackTrace();
+////        }
+//        }
+//
+//
+//
+//    /*public static synchronized List generateRandomPin(){
+//
+//        int start  = 1000000000;
+//        long end = 9999999999L;
+//
+//        Random random = new Random();
+//        for (int i=1;i<=3000;++i)
+//        {
+//            createRandomPin(start,end,random);
+//        }
+//        return null;
+//    }
+//
+//
+//    private static void createRandomPin(int aStart, long aEnd, Random aRandom)
+//    {
+//        if(aStart>aEnd)
+//        {
+//            throw new IllegalArgumentException("Start cannot exceed end");
+//
+//        }
+//        long range = (long)aEnd-(long)aStart+1;
+//        logger.info("range>>>>>>>>>>>>>>>>"+range);
+//        long fraction =(long)(range*aRandom.nextDouble());
+//        logger.info("fraction>>>>>>>>>>>>"+fraction);
+//        int randomNumber = (int)(fraction+aStart);
+//        logger.info("Generated"+randomNumber);
+//
+//    }
+//    */
