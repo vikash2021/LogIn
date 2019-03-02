@@ -3,4 +3,13 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#1a237e</color>
     <color name="colorAccent">#455a64</color>
+    <color name="followers">#2f7092</color>
+    <color name="headings">#0d5d98</color>
+    <color name="solidCircle">#3797cf</color>
+    <color name="circleBorder">#80ffffff</color>
+    <color name="gradEnd">#30ffffff</color>
+    <color name="gradStart">#67efc8</color>
+    <color name="followingbg">#63c9ff</color>
+    <color name="followersbg">#65dce5</color>
+    <color name="grey">#e5e5e5</color>
 </resources>

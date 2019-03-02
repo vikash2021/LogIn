@@ -24,6 +24,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.journeyapps.barcodescanner.CaptureActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +39,8 @@ public class scan extends AppCompatActivity {
     public  TextView resultTextView;
     private Context mContext;
     private Button scan_btn;
+
+    private static final String mainRoot = "http://192.168.43.49/v4/api/tmp/main/";
 
     final String url = "http://192.168.43.49/v4/api/tmp/hacktemp_insert_new_qr.php";
 
@@ -55,12 +58,16 @@ public class scan extends AppCompatActivity {
             }
         });
 
+                                      ////<<<<<<<--------------------------------------------------------<<<<<<<<<<<<<<<<<
+
+
     }
 
     private void Init() {
         mContext = scan.this;
         resultTextView = (TextView) findViewById(R.id.t7);
         scan_btn = (Button) findViewById(R.id.btn3);
+       // login_btn = (Button) findViewById(R.id.logOut);
     }
 
     void scanQr(){
@@ -70,7 +77,8 @@ public class scan extends AppCompatActivity {
         integrator.setCameraId(0);
         integrator.setBeepEnabled(true);
         integrator.setBarcodeImageEnabled(false);
-        integrator.setOrientationLocked(false);
+        integrator.setOrientationLocked(true);
+        integrator.setCaptureActivity(CaptureActivityPortrait.class);
         integrator.initiateScan();
     }
 
@@ -80,7 +88,7 @@ public class scan extends AppCompatActivity {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
 
         if (intentResult.getContents() == null){
-            Toast.makeText(mContext, "u cancelled the scan.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "You cancelled the scan.",Toast.LENGTH_SHORT).show();
         } else {
             resultTextView.setText(intentResult.getContents());
             resultTextView.setTextSize(16.0f);

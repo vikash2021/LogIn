@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".confirmationPage">
+
+    <ImageView
+        android:layout_width="170dp"
+        android:layout_height="160dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/images" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="150dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/tick" />
+
+
+    <TextView
+        android:layout_width="330dp"
+        android:layout_height="70dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="172dp"
+        android:text="This website is genuine.You can now login safely"
+        android:textAlignment="center"
+        android:textColor="#f57f17"
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="103dp"
+        android:hint="Your Username"
+        android:background="@drawable/edit_round"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="20sp" />
+    <ImageButton
+        android:id="@+id/imgBtn2"
+        android:layout_width="wrap_content"
+        android:layout_height="53dp"
+        android:layout_centerHorizontal="true"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_close_black_24dp" />
+
+</RelativeLayout>
