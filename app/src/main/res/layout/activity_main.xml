@@ -19,7 +19,7 @@
        android:id="@+id/t1"
        android:textColor="#455a64"
        android:hint="Username"
-       android:drawableLeft="@drawable/ic_person_black_24dp"
+       android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
        android:paddingLeft="10dp"
        android:drawablePadding="10dp"/>
 

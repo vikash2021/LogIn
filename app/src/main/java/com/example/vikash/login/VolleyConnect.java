@@ -163,7 +163,7 @@ public class VolleyConnect {
 
 
 
-    public void LogOut(String  s)
+    /*public void LogOut(String  s)
 
     {
         try {
@@ -219,7 +219,7 @@ public class VolleyConnect {
         }
 
 
-    }
+    }*/
 
 
     public Context getmContext() {
