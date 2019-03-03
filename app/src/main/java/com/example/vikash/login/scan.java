@@ -42,7 +42,7 @@ public class scan extends AppCompatActivity {
 
     private static final String mainRoot = "http://192.168.43.49/v4/api/tmp/main/";
 
-    final String url = "http://192.168.43.49/v4/api/tmp/hacktemp_insert_new_qr.php";
+    final String url = "http://192.168.137.119/v4/api/tmp/hacktemp_insert_new_data.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class scan extends AppCompatActivity {
     void scanQr(){
         IntentIntegrator integrator = new IntentIntegrator(scan.this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-        integrator.setPrompt("scan");
+        integrator.setPrompt("Scan QRCode");
         integrator.setCameraId(0);
         integrator.setBeepEnabled(true);
         integrator.setBarcodeImageEnabled(false);
@@ -88,23 +88,26 @@ public class scan extends AppCompatActivity {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
 
         if (intentResult.getContents() == null){
-            Toast.makeText(mContext, "You cancelled the scan.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "You cancelled the scan",Toast.LENGTH_SHORT).show();
         } else {
             resultTextView.setText(intentResult.getContents());
             resultTextView.setTextSize(16.0f);
 
             String qr_code = intentResult.getContents().toString();
-            String mobile_id = "9999999";
+            String ip = "9999999";
             String otp = "0000";
             String pk = "0";
+            String ok = "1";
+            String dates = "01/02/2019";
 
-            vollyConnect(url, qr_code, mobile_id, otp, pk);
+            vollyConnect(url, qr_code, ip, otp, pk,ok,dates);
+            startActivity(new Intent(getApplicationContext(), confirmationPage.class));
         }
         super.onActivityResult(requestCode, resultCode, data);
 
     }
 
-    private void vollyConnect(final String urls, String qr, String mobile_id, String otp, String pk)
+    private void vollyConnect(final String urls, String qr, String ip, String otp, String pk,String ok,String dates)
     {
 
         try {
@@ -112,12 +115,16 @@ public class scan extends AppCompatActivity {
             JSONObject jsonBody = new JSONObject();
 
             // init this json object
-            jsonBody.put("qr", qr);
-            jsonBody.put("mobile_id", mobile_id);
+            jsonBody.put("qr_number", qr);
+            jsonBody.put("ip_address", ip);
             jsonBody.put("otp", otp);
             jsonBody.put("pk", pk);
+            jsonBody.put("ok", ok);
+            jsonBody.put("date", dates);
+
 
             final String mRequestBody = jsonBody.toString();
+            Log.d(TAG, "vollyConnect: "+mRequestBody);
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, urls, new
                     Response.Listener<String>() {

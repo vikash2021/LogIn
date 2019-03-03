@@ -19,7 +19,8 @@ public class phishingPage extends AppCompatActivity {
         imgButton = (ImageButton)findViewById(R.id.imgBtn);
 
 
-        imgButton.setOnClickListener(new View.OnClickListener() {
+        imgButton.setOnClickListener(
+                new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
