@@ -2,6 +2,7 @@ package com.example.vikash.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,9 +31,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.util.Map;
 
 public class scan extends AppCompatActivity {
+
+   // public Array imgGroup ={{}}
 
     private static final String TAG = "scan";
 
@@ -93,6 +97,16 @@ public class scan extends AppCompatActivity {
             resultTextView.setText(intentResult.getContents());
             resultTextView.setTextSize(16.0f);
 
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    startActivity(new Intent(getApplicationContext(), confirmationPage.class));
+                }
+            }, 2000);
+
+
             String qr_code = intentResult.getContents().toString();
             String ip = "9999999";
             String otp = "0000";
@@ -101,7 +115,8 @@ public class scan extends AppCompatActivity {
             String dates = "01/02/2019";
 
             vollyConnect(url, qr_code, ip, otp, pk,ok,dates);
-            startActivity(new Intent(getApplicationContext(), confirmationPage.class));
+
+
         }
         super.onActivityResult(requestCode, resultCode, data);
 
